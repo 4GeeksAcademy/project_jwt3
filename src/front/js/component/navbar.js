@@ -20,17 +20,25 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Home</span>
         </Link>
-        {store?.token && (
-          <Link to="/private">
-            <span className="navbar-brand mb-0 h1">Dashboard</span>
-          </Link>
-        )}
         <div className="ml-auto">
-          <Link to="/login">
-            <button className="btn btn-primary" onClick={handleClick}>
-              {store?.token ? "Logout" : "Login/Register"}
+          {!store.token ? (
+            <>
+              <Link to="/login">
+                <button className="btn btn-primary">
+                  Login
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="btn btn-secondary ml-2">
+                  Register
+                </button>
+              </Link>
+            </>
+          ) : (
+            <button className="btn btn-danger" onClick={handleClick}>
+              Logout
             </button>
-          </Link>
+          )}
         </div>
       </div>
     </nav>

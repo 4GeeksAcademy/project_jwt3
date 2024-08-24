@@ -4,22 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		message: null,
 		token: localStorage.getItem("token") || null,
 		profile: null,
-		demo: [
-		  {
-			title: "FIRST",
-			background: "white",
-			initial: "white",
-		  },
-		  {
-			title: "SECOND",
-			background: "white",
-			initial: "white",
-		  },
-		],
 	  },
 	  actions: {
 		// Use getActions to call a function within a fuction
-		getIsLogin: () => {
+		getLogin: () => {
 		  return getStore();
 		},
   
@@ -28,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  localStorage.removeItem("token");
 		  setStore({ ...store, token: null, profile: null });
 		},
-		loginUser: async ({ email, password }) => {
+		login: async ({ email, password }) => {
 		  try {
 			// fetching data from the backend
 			const resp = await fetch(process.env.BACKEND_URL + "/api/token", {
